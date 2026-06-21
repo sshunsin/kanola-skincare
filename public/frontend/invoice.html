@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Invoice - Kanola Skincare</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #fff5f8;
+      color: #333;
+    }
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 0.8s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    h1 {
+      text-align: center;
+      color: #e75480;
+      margin-bottom: 20px;
+    }
+    .section {
+      margin-top: 25px;
+    }
+    .section h3 {
+      color: #e75480;
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+    .product-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eee;
+    }
+    .summary p {
+      display: flex;
+      justify-content: space-between;
+      margin: 6px 0;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #ddd;
+      margin: 20px 0;
+    }
+    .btn-confirm {
+      display: block;
+      margin: 30px auto 0;
+      padding: 12px 28px;
+      background: #e75480;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+    .btn-confirm:hover {
+      background: #d9456b;
+    }
+    .popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .popup-content {
+      background: white;
+      padding: 30px;
+      border-radius: 14px;
+      text-align: center;
+      max-width: 400px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      animation: fadeIn 0.4s ease;
+    }
+    .popup-content h3 {
+      color: #e75480;
+      margin-bottom: 20px;
+    }
+    .popup-content button {
+      margin: 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .btn-dashboard {
+      background: #e75480;
+      color: white;
+    }
+    .btn-belanja {
+      background: #ccc;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>🧾 Invoice Pembelian</h1>
+
+  <div class="section">
+    <h3>📦 Produk Dipesan:</h3>
+    <div id="produkList"></div>
+    <hr>
+  </div>
+
+  <div class="section">
+    <h3>📮 Alamat Pengiriman:</h3>
+    <p id="alamatUser">-</p>
+    <hr>
+  </div>
+
+  <div class="section">
+    <h3>🚚 Metode Pengiriman:</h3>
+    <p id="pengiriman">-</p>
+    <hr>
+  </div>
+
+  <div class="section summary">
+    <h3>💸 Rincian Biaya:</h3>
+    <p><span>Subtotal:</span><span id="subtotal">Rp0</span></p>
+    <p><span>Ongkir:</span><span id="ongkir">Rp0</span></p>
+    <p><span>Admin:</span><span id="admin">Rp2.500</span></p>
+    <p><span>Diskon:</span><span id="diskon">Rp0</span></p>
+    <hr>
+    <p><strong>Total:</strong><strong id="total">Rp0</strong></p>
+  </div>
+
+  <a id="waLink" class="btn-confirm" target="_blank" onclick="showPopup(event)">Konfirmasi ke Admin via WhatsApp</a>
+</div>
+
+<!-- POPUP -->
+<div class="popup" id="popup">
+  <div class="popup-content">
+    <h3>✅ Terima kasih sudah mengkonfirmasi!</h3>
+    <p>Silakan pilih tindakan selanjutnya:</p>
+    <button class="btn-dashboard" onclick="window.location.href='dashboard.html'">🏠 Kembali ke Dashboard</button>
+    <button class="btn-belanja" onclick="window.location.href='produk.html'">🛍 Belanja Lagi</button>
+  </div>
+</div>
+
+<script>
+  const cart = JSON.parse(localStorage.getItem("kanolaCart")) || [];
+  const alamat = localStorage.getItem("alamatUser") || "(belum diisi)";
+  const pengiriman = localStorage.getItem("pengiriman") || "Reguler";
+  const discount = parseInt(localStorage.getItem("diskon")) || 0;
+  const adminFee = 2500;
+
+  function formatRp(x) {
+    return 'Rp' + x.toLocaleString('id-ID');
+  }
+
+  function getHarga(nama) {
+    const harga = {
+      "Glow Serum C": 125000,
+      "Hydra Calm Gel": 99000,
+      "Deep Clean Wash": 85000,
+      "Gentle Milk Cleanser": 110000,
+      "Daily Defense SPF 50": 140000,
+      "Aqua Mist Toner": 75000,
+      "Night Repair Cream": 130000,
+      "Clear Spot Solution": 65000
+    };
+    return harga[nama] || 100000;
+  }
+
+  let subtotal = 0;
+  cart.forEach(item => {
+    subtotal += item.qty * getHarga(item.nama);
+  });
+
+  const ongkirMap = {
+    "reguler": 12000,
+    "same": 20000,
+    "instan": 30000,
+    "kargo": 8000
+  };
+  const ongkir = ongkirMap[pengiriman.toLowerCase()] || 12000;
+  const total = subtotal + ongkir + adminFee - discount;
+
+  document.getElementById("alamatUser").textContent = alamat;
+  document.getElementById("pengiriman").textContent = pengiriman;
+  document.getElementById("subtotal").textContent = formatRp(subtotal);
+  document.getElementById("ongkir").textContent = formatRp(ongkir);
+  document.getElementById("admin").textContent = formatRp(adminFee);
+  document.getElementById("diskon").textContent = formatRp(discount);
+  document.getElementById("total").textContent = formatRp(total);
+
+  const produkList = document.getElementById("produkList");
+  cart.forEach(item => {
+    const row = document.createElement("div");
+    row.className = "product-item";
+    row.innerHTML = `<span>${item.nama} x ${item.qty}</span><span>${formatRp(item.qty * getHarga(item.nama))}</span>`;
+    produkList.appendChild(row);
+  });
+
+  const waNumber = "6285715117841";
+  const message = `Halo Admin Kanola Skincare! Saya telah checkout dengan detail berikut:\n\n📦 Produk:\n${cart.map(item => `- ${item.nama} x${item.qty}`).join('\n')}\n\n📮 Alamat: ${alamat}\n🚚 Pengiriman: ${pengiriman}\n💰 Total: ${formatRp(total)}\n\nMohon konfirmasi pesanan saya, terima kasih! 🌸`;
+  const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
+  const waBtn = document.getElementById("waLink");
+  waBtn.href = waUrl;
+
+  // Fungsi popup dan history
+  function showPopup(event) {
+    setTimeout(() => {
+      document.getElementById("popup").style.display = "flex";
+    }, 1000);
+
+    // Simpan ke history
+    const history = JSON.parse(localStorage.getItem("kanolaHistory") || "[]");
+    history.push({
+      produk: cart,
+      alamat,
+      pengiriman,
+      total,
+      tanggal: new Date().toLocaleString("id-ID")
+    });
+    localStorage.setItem("kanolaHistory", JSON.stringify(history));
+
+    // Kosongkan keranjang
+    localStorage.removeItem("kanolaCart");
+  }
+</script>
+
+</body>
+</html>

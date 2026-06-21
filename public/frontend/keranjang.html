@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Keranjang - Kanola Skincare</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; font-family: 'Poppins', sans-serif; margin: 0; padding: 0; }
+    body {
+      background: url('deleting once i get my laptop.jpeg') no-repeat center center/cover;
+      color: #333;
+    }
+    header {
+      background: #fff;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+    header h1 { color: #e75480; font-size: 22px; }
+    .nav-buttons a {
+      padding: 8px 16px;
+      background: #e75480;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      margin-left: 10px;
+      font-size: 14px;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 25px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 16px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+    }
+    h2 { text-align: center; color: #e75480; margin-bottom: 30px; }
+    .cart-item { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #eee; align-items: center; }
+    .cart-item img { width: 90px; height: 90px; border-radius: 10px; margin-right: 16px; }
+    .item-info { display: flex; flex: 1; align-items: center; }
+    .qty { display: flex; gap: 10px; margin-top: 5px; }
+    .qty button {
+      background: #e75480; color: #fff; border: none; padding: 5px 12px;
+      border-radius: 6px; cursor: pointer;
+    }
+    .remove-btn { font-size: 18px; background: none; border: none; color: #888; cursor: pointer; }
+    .summary {
+      margin-top: 35px; background: #fff3f7; padding: 25px;
+      border-radius: 16px; border: 1px solid #f8c8d8;
+    }
+    .summary h3 { color: #e75480; }
+    .summary p { display: flex; justify-content: space-between; margin: 10px 0; }
+    .voucher input, .alamat input, select {
+      padding: 10px; border: 1px solid #ccc; border-radius: 8px;
+      width: 100%; margin-top: 8px;
+    }
+    .voucher button {
+      margin-top: 10px; padding: 10px 18px; background: #e75480;
+      color: white; border: none; border-radius: 8px; cursor: pointer;
+    }
+    .alamat { margin-top: 20px; }
+    .checkout-btn { margin-top: 25px; text-align: center; }
+    .checkout-btn button {
+      padding: 12px 30px; background: #e75480; color: white;
+      border: none; border-radius: 10px; font-size: 16px; font-weight: bold;
+      cursor: pointer; transition: all 0.3s ease;
+    }
+    .checkout-btn button:hover { background: #d9456b; }
+    .loading { display: none; text-align: center; margin-top: 20px; color: #e75480; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🛍️ Keranjang Belanja</h1>
+  <div class="nav-buttons">
+    <a href="dashboard.html">🏠 Dashboard</a>
+    <a href="produk.html">🧴 Kembali ke Produk</a>
+  </div>
+</header>
+
+<div class="container">
+  <h2>Daftar Produk Kamu</h2>
+  <div id="cartItems"></div>
+
+  <div class="summary">
+    <h3>Ringkasan Belanja</h3>
+    <div class="voucher">
+      <label>Kode Voucher:</label>
+      <input type="text" id="voucherCode" placeholder="CANTIK10 / GLOW50 / FREESHIP">
+      <button onclick="applyVoucher()">Terapkan</button>
+    </div>
+
+    <div style="margin-top: 20px;">
+      <label>Pilih Metode Pengiriman:</label>
+      <select id="shippingOption" onchange="updateCart()">
+        <option value="reguler">Reguler (Rp12.000)</option>
+        <option value="same">Same Day (Rp20.000)</option>
+        <option value="instan">Instan (Rp30.000)</option>
+        <option value="kargo">Kargo (Rp8.000)</option>
+      </select>
+    </div>
+
+    <div class="alamat">
+      <label>Alamat Pengiriman:</label>
+      <input type="text" id="alamat" placeholder="Tulis alamat lengkap kamu...">
+    </div>
+
+    <p><span>Subtotal:</span><span id="subtotal">Rp0</span></p>
+    <p><span>Ongkir:</span><span id="shipping">Rp0</span></p>
+    <p><span>Biaya Admin:</span><span id="adminFee">Rp2.500</span></p>
+    <p><span>Diskon:</span><span id="discount">Rp0</span></p>
+    <hr>
+    <p><strong>Total:</strong><strong id="total">Rp0</strong></p>
+
+    <div class="checkout-btn">
+      <button onclick="prosesCheckout()">Lanjut Checkout</button>
+    </div>
+    <div class="loading" id="loading">⏳ Sedang diproses...</div>
+  </div>
+</div>
+
+<script>
+  let cart = JSON.parse(localStorage.getItem("kanolaCart")) || [];
+  const subtotalEl = document.getElementById("subtotal");
+  const shippingEl = document.getElementById("shipping");
+  const discountEl = document.getElementById("discount");
+  const totalEl = document.getElementById("total");
+  const adminFeeEl = document.getElementById("adminFee");
+  const shippingOption = document.getElementById("shippingOption");
+  const cartItems = document.getElementById("cartItems");
+  const loading = document.getElementById("loading");
+  let discount = 0;
+
+  function formatRp(x) {
+    return 'Rp' + x.toLocaleString('id-ID');
+  }
+
+  function getHarga(nama) {
+    const harga = {
+      "Glow Serum C": 125000,
+      "Hydra Calm Gel": 99000,
+      "Deep Clean Wash": 85000,
+      "Gentle Milk Cleanser": 110000,
+      "Daily Defense SPF 50": 140000,
+      "Aqua Mist Toner": 75000,
+      "Night Repair Cream": 130000,
+      "Clear Spot Solution": 65000
+    };
+    return harga[nama] || 100000;
+  }
+
+  function getShippingPrice() {
+    switch (shippingOption.value) {
+      case "same": return 20000;
+      case "instan": return 30000;
+      case "kargo": return 8000;
+      default: return 12000;
+    }
+  }
+
+  function updateCart() {
+    cartItems.innerHTML = "";
+    let subtotal = 0;
+    cart.forEach((item, i) => {
+      subtotal += item.qty * getHarga(item.nama);
+      cartItems.innerHTML += `
+        <div class="cart-item">
+          <div class="item-info">
+            <img src="${item.img}" alt="${item.nama}">
+            <div>
+              <strong>${item.nama}</strong><br>
+              ${formatRp(getHarga(item.nama))} x ${item.qty}
+              <div class="qty">
+                <button onclick="kurangQty(${i})">−</button>
+                <span>${item.qty}</span>
+                <button onclick="tambahQty(${i})">+</button>
+                <button class="remove-btn" onclick="hapusItem(${i})">🗑</button>
+              </div>
+            </div>
+          </div>
+        </div>`;
+    });
+
+    const ongkir = getShippingPrice();
+    const adminFee = 2500;
+    subtotalEl.textContent = formatRp(subtotal);
+    shippingEl.textContent = formatRp(ongkir);
+    adminFeeEl.textContent = formatRp(adminFee);
+    discountEl.textContent = formatRp(discount);
+    totalEl.textContent = formatRp(subtotal + ongkir + adminFee - discount);
+    localStorage.setItem("kanolaCart", JSON.stringify(cart));
+  }
+
+  function tambahQty(i) { cart[i].qty++; updateCart(); }
+  function kurangQty(i) { cart[i].qty > 1 ? cart[i].qty-- : cart.splice(i, 1); updateCart(); }
+  function hapusItem(i) { cart.splice(i, 1); updateCart(); }
+
+  function applyVoucher() {
+    const code = document.getElementById("voucherCode").value.trim().toUpperCase();
+    if (code === "CANTIK10") discount = 10000;
+    else if (code === "GLOW50") discount = 50000;
+    else if (code === "FREESHIP") discount = getShippingPrice();
+    else { discount = 0; alert("❌ Voucher tidak valid."); return; }
+    alert("🎉 Voucher diterapkan!"); updateCart();
+  }
+
+  function prosesCheckout() {
+    const alamat = document.getElementById("alamat").value.trim();
+    if (!alamat) return alert("📮 Harap isi alamat pengiriman terlebih dahulu.");
+    localStorage.setItem("alamatUser", alamat);
+    localStorage.setItem("pengiriman", shippingOption.options[shippingOption.selectedIndex].text);
+    localStorage.setItem("diskon", discount);
+    loading.style.display = "block";
+    setTimeout(() => {
+      loading.style.display = "none";
+      window.location.href = "checkout.html";
+    }, 2000);
+  }
+
+  updateCart();
+</script>
+
+</body>
+</html>

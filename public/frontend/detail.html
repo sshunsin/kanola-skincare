@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Detail Produk - Kanola Skincare</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    body {
+      margin: 0; padding: 0;
+      background: url('deleting once i get my laptop.jpeg') center/cover no-repeat;
+      backdrop-filter: blur(5px);
+      color: #333;
+    }
+    header {
+      background: rgba(255,255,255,0.95);
+      padding: 16px 24px;
+      position: sticky; top: 0; z-index: 1000;
+      display: flex; justify-content: space-between; align-items: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    header h1 { color: #e75480; font-size: 1.5rem; margin: 0; }
+    .nav-icons { display: flex; gap: 12px; }
+    .nav-icons a {
+      text-decoration: none;
+      background: #e75480;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 8px;
+      transition: background 0.3s;
+      font-size: 14px;
+    }
+    .nav-icons a:hover { background: #c93d6b; }
+    .detail-section {
+      max-width: 900px;
+      margin: 40px auto;
+      display: flex; flex-wrap: wrap; gap: 30px;
+      background: rgba(255,255,255,0.96);
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      padding: 30px;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+    .detail-section img {
+      width: 100%;
+      max-width: 340px;
+      height: auto;
+      border-radius: 16px;
+      border: 2px solid #f5c5d2;
+      object-fit: cover;
+      transition: transform 0.4s ease, box-shadow 0.3s ease;
+      flex: 1 1 320px;
+    }
+    .detail-section img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+    }
+    .detail-info { flex: 1; min-width: 260px; }
+    .detail-info h2 { margin-top: 0; color: #e75480; }
+    .detail-info p { margin: 8px 0; font-size: 0.95rem; line-height: 1.5; }
+    .detail-info ul { margin: 8px 0 12px; padding-left: 20px; }
+    .detail-info .harga {
+      font-size: 1.2rem;
+      color: #d93f6f;
+      font-weight: 600;
+      margin: 12px 0;
+    }
+    .rating-review {
+      background: #fff4f8;
+      border-radius: 12px;
+      border: 1px solid #f4c3d1;
+      padding: 16px;
+      margin-top: 20px;
+    }
+    .rating-review h4 { margin: 0 0 8px; color: #e75480; }
+    .rating-review p { margin: 6px 0; font-size: 0.9rem; line-height: 1.4; }
+    footer {
+      text-align: center;
+      color: #999;
+      font-size: 13px;
+      margin: 50px 0 20px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0px); }
+    }
+    @media (max-width: 768px) {
+      .detail-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .detail-section img {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Detail Produk</h1>
+  <div class="nav-icons">
+    <a href="produk.html">← Kembali</a>
+    <a href="keranjang.html">🛒 Keranjang</a>
+  </div>
+</header>
+
+<div class="detail-section" id="detailSection">
+  <!-- Diisi via JavaScript -->
+</div>
+
+<footer>© 2025 Kanola Skincare</footer>
+
+<script>
+  const produkList = [
+    {
+      nama: "Glow Serum C",
+      img: "Cosmetic bottles.jpeg",
+      deskripsi: "Serum Vitamin C untuk mencerahkan & melembapkan.",
+      bahan: ["Vitamin C murni", "Hyaluronic Acid", "Aloe Vera"],
+      manfaat: ["Mencerahkan kulit", "Mengurangi noda", "Antioksidan tinggi"],
+      jenis: "Normal",
+      ukuran: "30 ml",
+      harga: "Rp 125.000",
+      rating: 4.8,
+      reviews: [
+        "Sangat mencerahkan wajah saya dalam 2 minggu!",
+        "Cocok untuk kulit sensitif saya.",
+        "Ringan dan cepat meresap."
+      ]
+    },
+    {
+      nama: "Hydra Calm Gel",
+      img: "Alya Skin ™ on Instagram_ “Time to detoxify….jpeg",
+      deskripsi: "Gel ringan untuk melembapkan kulit berminyak & sensitif.",
+      bahan: ["Centella Asiatica", "Green Tea", "Glycerin"],
+      manfaat: ["Menghidrasi tanpa lengket", "Menyejukkan", "Non-comedogenic"],
+      jenis: "Berminyak",
+      ukuran: "50 g",
+      harga: "Rp 99.000",
+      rating: 4.7,
+      reviews: [
+        "Kulitku lebih tenang dan tidak breakout.",
+        "Enak banget teksturnya!",
+        "Wajib repurchase!"
+      ]
+    },
+    {
+      nama: "Deep Clean Wash",
+      img: "WhatsApp Image 2025-06-17 at 00.45.10_f849df99.jpg",
+      deskripsi: "Face wash charcoal + tea tree, membersihkan pori mendalam.",
+      bahan: ["Charcoal", "Tea Tree Oil", "Glycerin"],
+      manfaat: ["Angkat minyak ekstra", "Mencegah jerawat", "Membersihkan mendalam"],
+      jenis: "Berminyak",
+      ukuran: "100 ml",
+      harga: "Rp 85.000",
+      rating: 4.6,
+      reviews: [
+        "Busa lembut tapi bersih maksimal!",
+        "Jerawat jadi cepat kempes.",
+        "Tidak bikin kulit kering."
+      ]
+    },
+    {
+      nama: "Gentle Milk Cleanser",
+      img: "WhatsApp Image 2025-06-17 at 00.43.51_d43dd4f4.jpg",
+      deskripsi: "Pembersih lembut tanpa alkohol, ideal untuk kulit sensitif.",
+      bahan: ["Milk Proteins", "Chamomile", "Panthenol"],
+      manfaat: ["Menghapus makeup ringan", "Menenangkan kulit", "Tidak kering"],
+      jenis: "Sensitif",
+      ukuran: "120 ml",
+      harga: "Rp 110.000",
+      rating: 4.9,
+      reviews: [
+        "Beneran lembut & calming.",
+        "Makeup ringan terangkat sempurna.",
+        "Kulit terasa lembap setelah bilas."
+      ]
+    },
+    {
+      nama: "Daily Defense SPF 50",
+      img: "0f77acc7-a64c-439a-a73c-be14913c220c.jpeg",
+      deskripsi: "Tabir surya broad‑spectrum dengan niacinamide.",
+      bahan: ["Niacinamide", "Zinc Oxide", "Aloe Vera"],
+      manfaat: ["Perlindungan UV maksimal", "Mencerahkan", "Non-whitecast"],
+      jenis: "Kombinasi",
+      ukuran: "50 ml",
+      harga: "Rp 140.000",
+      rating: 4.8,
+      reviews: [
+        "Ringan, nggak bikin white‑cast.",
+        "Kulit tetap lembap tahan lama!",
+        "Nyaman dipakai seharian."
+      ]
+    },
+    {
+      nama: "Aqua Mist Toner",
+      img: "WhatsApp Image 2025-06-17 at 00.42.10_c3cacfab.jpg",
+      deskripsi: "Toner semprot yang menyegarkan kapan saja.",
+      bahan: ["Rose Water", "Glycerin", "Green Tea"],
+      manfaat: ["Menyegarkan instan", "Membantu penyerapan skincare", "Hidrasi ringan"],
+      jenis: "Kering",
+      ukuran: "120 ml",
+      harga: "Rp 75.000",
+      rating: 4.5,
+      reviews: [
+        "Segar banget dipakai di siang hari!",
+        "Nge-boost produk skincare berikutnya.",
+        "Ukuran travel-friendly."
+      ]
+    },
+    {
+      nama: "Night Repair Cream",
+      img: "WhatsApp Image 2025-06-17 at 08.59.37_b2adab46.jpg",
+      deskripsi: "Krim malam peptide untuk regenerasi kulit.",
+      bahan: ["Peptide Complex", "Shea Butter", "Ceramide"],
+      manfaat: ["Perbaiki sel kulit", "Mengurangi garis halus", "Kulit terasa kencang"],
+      jenis: "Normal",
+      ukuran: "50 g",
+      harga: "Rp 130.000",
+      rating: 4.7,
+      reviews: [
+        "Kulit terasa plumpy & sehat pagi hari.",
+        "Tidak terlalu berat saat dipakai malam.",
+        "Suka tekstur krimnya."
+      ]
+    },
+    {
+      nama: "Clear Spot Solution",
+      img: "512e80c4-7919-47fb-811b-ddbf8df18d50.jpeg",
+      deskripsi: "Penghilang jerawat spot treatment cepat.",
+      bahan: ["Salicylic Acid", "Tea Tree Oil", "Centella"],
+      manfaat: ["Mengempeskan jerawat", "Anti-bakteri", "Tidak mengeringkan dime area"],
+      jenis: "Berminyak",
+      ukuran: "15 ml",
+      harga: "Rp 65.000",
+      rating: 4.6,
+      reviews: [
+        "Jerawat mengempes dalam 1 malam.",
+        "Raw formula, aman di kulit sensitif.",
+        "Stok terus tiap bulan!"
+      ]
+    }
+  ];
+
+  function getId() {
+    const u = new URL(window.location.href);
+    const v = parseInt(u.searchParams.get("id"));
+    return (v >= 0 && v < produkList.length) ? v : 0;
+  }
+  const idx = getId();
+  const p = produkList[idx];
+
+  document.getElementById("detailSection").innerHTML = `
+    <img src="${p.img}" alt="${p.nama}">
+    <div class="detail-info">
+      <h2>${p.nama}</h2>
+      <p>${p.deskripsi}</p>
+      <p><strong>Bahan utama:</strong> ${p.bahan.join(', ')}</p>
+      <p><strong>Manfaat:</strong></p>
+      <ul>${p.manfaat.map(x => `<li>${x}</li>`).join('')}</ul>
+      <p><strong>Jenis Kulit:</strong> ${p.jenis}</p>
+      <p><strong>Ukuran:</strong> ${p.ukuran}</p>
+      <p class="harga">${p.harga}</p>
+      <div class="rating-review">
+        <h4>⭐ Rating: ${p.rating}/5</h4>
+        ${p.reviews.map(r => `<p>💬 &ldquo;${r}&rdquo;</p>`).join('')}
+      </div>
+    </div>
+  `;
+</script>
+
+</body>
+</html>

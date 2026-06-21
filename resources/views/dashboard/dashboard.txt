@@ -1,0 +1,217 @@
+@extends('layouts.app')
+
+@section('content')
+
+<!-- GOOGLE FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+    font-family:'Poppins',sans-serif;
+}
+
+.dashboard-container{
+    max-width:1100px;
+    margin:auto;
+}
+
+.page-title{
+    font-weight:800;
+    color:#d63384;
+    margin-bottom:20px;
+}
+
+/* Cards */
+.cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.card{
+    background:white;
+    border-radius:15px;
+    padding:18px;
+    box-shadow:0 8px 25px rgba(0,0,0,.06);
+}
+
+.card .label{
+    font-size:13px;
+    color:#777;
+}
+
+.card .value{
+    font-size:22px;
+    font-weight:700;
+    color:#ff2f92;
+}
+
+/* Sections */
+.section{
+    margin-top:25px;
+    background:white;
+    padding:18px;
+    border-radius:14px;
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
+}
+
+.card-title{
+    color:#d63384;
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+canvas{
+    margin-top:10px;
+}
+</style>
+
+
+<div class="dashboard-container">
+
+    <h2 class="page-title">💗 Dashboard Monitoring</h2>
+
+    {{-- PRODUCT CARDS --}}
+    <div class="cards">
+
+        <div class="card">
+            <p class="label">Total Produk Aktif</p>
+            <p class="value">{{ $total_products }}</p>
+        </div>
+
+        <div class="card">
+            <p class="label">Produk Stok Menipis</p>
+            <p class="value">{{ $low_stock }}</p>
+        </div>
+
+        <div class="card">
+            <p class="label">Produk Akan Expired</p>
+            <p class="value">{{ $near_expired }}</p>
+        </div>
+
+    </div>
+
+
+    {{-- EMPLOYEE SUMMARY --}}
+    <div class="section">
+        <h3 class="card-title">👩‍💼 Total Karyawan</h3>
+
+        <p><strong>{{ $total_employees }}</strong> Orang</p>
+
+        <table border="1" cellpadding="6">
+            <tr>
+                <th>Divisi</th>
+                <th>Jumlah</th>
+            </tr>
+
+            @foreach($employees_by_division as $div)
+            <tr>
+                <td>{{ $div->name }}</td>
+                <td>{{ $div->employees_count }}</td>
+            </tr>
+            @endforeach
+        </table>
+    </div>
+
+
+    {{-- ATTENDANCE SUMMARY --}}
+    <div class="section">
+        <h3 class="card-title">🕒 Absensi Hari Ini</h3>
+
+        <ul>
+            <li>Hadir : {{ $present_today }}</li>
+            <li>Izin : {{ $izin_today }}</li>
+            <li>Sakit : {{ $sakit_today }}</li>
+            <li>Alpha : {{ $alpha_today }}</li>
+        </ul>
+    </div>
+
+
+    {{-- CHART 1 --}}
+    <div class="section">
+        <h3 class="card-title">📊 Statistik Absensi Hari Ini</h3>
+        <canvas id="attendanceChart" height="120"></canvas>
+    </div>
+
+    {{-- CHART 2 --}}
+    <div class="section">
+        <h3 class="card-title">📈 Karyawan Berdasarkan Divisi</h3>
+        <canvas id="divisionChart" height="120"></canvas>
+    </div>
+
+</div>
+
+
+{{-- CHART.JS --}}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+//////////////////////
+// ABSENSI PIE CHART
+//////////////////////
+
+const ctx1 = document.getElementById('attendanceChart');
+
+new Chart(ctx1, {
+    type: 'pie',
+    data: {
+        labels: ['Hadir','Izin','Sakit','Alpha'],
+        datasets: [{
+            data: [
+                {{ $present_today }},
+                {{ $izin_today }},
+                {{ $sakit_today }},
+                {{ $alpha_today }}
+            ],
+            backgroundColor:[
+                '#ff7fbf',
+                '#ffb3d9',
+                '#ff4fa1',
+                '#d63384'
+            ],
+            borderWidth:1,
+            borderColor:'#fff'
+        }]
+    }
+});
+
+
+//////////////////////
+// DIVISION BAR CHART
+//////////////////////
+
+const ctx2 = document.getElementById('divisionChart');
+
+new Chart(ctx2, {
+    type: 'bar',
+    data: {
+        labels: [
+            @foreach($employees_by_division as $div)
+                "{{ $div->name }}",
+            @endforeach
+        ],
+        datasets: [{
+            label:'Jumlah Karyawan',
+            data:[
+                @foreach($employees_by_division as $div)
+                    {{ $div->employees_count }},
+                @endforeach
+            ],
+            backgroundColor:'#ff7fbf',
+            borderRadius:12
+        }]
+    },
+    options:{
+        plugins:{
+            legend:{display:false}
+        },
+        scales:{
+            y:{beginAtZero:true}
+        }
+    }
+});
+
+</script>
+
+@endsection

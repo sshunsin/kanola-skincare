@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard - Kanola Skincare</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-light: #fffafc;
+      --bg-dark: #1e1e1f;
+      --text-light: #333;
+      --text-dark: #eee;
+      --panel-bg-light: white;
+      --panel-bg-dark: #2a2a2d;
+      --shadow: rgba(0, 0, 0, 0.08);
+      --primary: #e75480;
+      --hover: #d24670;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: url('d0e96ed1-0659-49d3-b2e0-3158df73c582.jpeg') no-repeat center center/cover;
+      background-color: var(--bg-light);
+      backdrop-filter: blur(3px);
+      color: var(--text-light);
+      transition: background-color 0.4s, color 0.4s;
+      padding: 40px 20px;
+    }
+
+    body.dark {
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .subtext {
+      text-align: center;
+      color: #555;
+      font-size: 16px;
+      margin-bottom: 40px;
+    }
+
+    .panel-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+
+    .panel {
+      background-color: var(--panel-bg-light);
+      border-radius: 14px;
+      padding: 25px;
+      width: 240px;
+      box-shadow: 0 8px 18px var(--shadow);
+      text-align: center;
+      transition: transform 0.3s ease, background-color 0.4s, color 0.4s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    body.dark .panel {
+      background-color: var(--panel-bg-dark);
+    }
+
+    .panel:hover {
+      transform: translateY(-6px);
+    }
+
+    .panel-icon {
+      font-size: 40px;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .panel-title {
+      color: var(--primary);
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .panel-desc {
+      font-size: 14px;
+      color: #555;
+    }
+
+    body.dark .panel-desc {
+      color: #ccc;
+    }
+
+    .button-area {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .button-area a {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      margin: 0 10px 10px;
+      transition: background 0.3s ease;
+    }
+
+    .button-area a:hover {
+      background: var(--hover);
+    }
+
+    .dark-toggle {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .dark-toggle button {
+      background: none;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      padding: 6px 14px;
+      font-size: 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .dark-toggle button:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 14px;
+      color: #999;
+      margin-top: 60px;
+      border-top: 1px solid #eee;
+      padding: 20px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Hai, <span id="username">Cantik</span> 💖</h1>
+  <p id="greeting" class="subtext">Selamat datang di pusat perawatan kulit Kanola Skincare.</p>
+
+  <div class="panel-container">
+    <a href="jeniskulit.html" class="panel">
+      <div class="panel-icon">🎓</div>
+      <div class="panel-title">Jenis Kulit</div>
+      <div class="panel-desc">Kenali jenis kulitmu: normal, kering, berminyak, sensitif.</div>
+    </a>
+
+    <a href="urutanskincare.html" class="panel">
+      <div class="panel-icon">📋</div>
+      <div class="panel-title">Urutan Skincare</div>
+      <div class="panel-desc">Pelajari langkah-langkah skincare pagi & malam.</div>
+    </a>
+
+    <a href="tipsperawatan.html" class="panel">
+      <div class="panel-icon">💡</div>
+      <div class="panel-title">Tips Perawatan</div>
+      <div class="panel-desc">Tips menjaga kulit sehat, cerah, dan terawat.</div>
+    </a>
+
+    <a href="produk.html" class="panel">
+      <div class="panel-icon">🧴</div>
+      <div class="panel-title">Produk Skincare</div>
+      <div class="panel-desc">Lihat koleksi lengkap produk perawatan kulitmu!</div>
+    </a>
+
+    <a href="profil.html" class="panel">
+      <div class="panel-icon">👤</div>
+      <div class="panel-title">Profilku</div>
+      <div class="panel-desc">Lihat dan edit informasi pribadi kamu di sini.</div>
+    </a>
+
+    <a href="timeline.html" class="panel">
+      <div class="panel-icon">📆</div>
+      <div class="panel-title">Timeline</div>
+      <div class="panel-desc">Inspirasi skincare dan tren kecantikan terkini.</div>
+    </a>
+
+    <a href="keranjang.html" class="panel">
+      <div class="panel-icon">🛒</div>
+      <div class="panel-title">Keranjang</div>
+      <div class="panel-desc">Lihat dan kelola produk yang kamu tambahkan.</div>
+    </a>
+
+    <a href="historypembelian.html" class="panel">
+      <div class="panel-icon">🛍️</div>
+      <div class="panel-title">Riwayat Pembelian</div>
+      <div class="panel-desc">Semua pesanan yang pernah Anda buat tercatat rapi di sini. Terima kasih sudah belanja di Kanola 💖</div>
+    </a>
+  </div>
+
+  <div class="button-area">
+    <a href="edukasi.html">📚 Edukasi Lengkap</a>
+    <a href="index.html">🚪 Keluar</a>
+  </div>
+
+  <div class="dark-toggle">
+    <button onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
+  </div>
+
+  <footer>
+    © 2025 Kanola Skincare. All rights reserved.
+  </footer>
+
+  <script>
+    const user = JSON.parse(localStorage.getItem("kanolaUserLogin"));
+    const usernameEl = document.getElementById("username");
+    const greetingEl = document.getElementById("greeting");
+
+    if (user && user.nama) {
+      usernameEl.innerText = user.nama;
+    } else {
+      usernameEl.innerText = "Cantik";
+    }
+
+    const hours = new Date().getHours();
+    let greeting = "Selamat datang di pusat perawatan kulit Kanola Skincare.";
+
+    if (hours >= 5 && hours < 12) {
+      greeting = "Selamat pagi, semoga harimu cerah seperti kulit sehatmu 🌞";
+    } else if (hours >= 12 && hours < 17) {
+      greeting = "Selamat siang, jangan lupa re-apply sunscreen ya! ☀️";
+    } else if (hours >= 17 && hours < 21) {
+      greeting = "Selamat sore, waktunya skincare rutin sore! 💧";
+    } else {
+      greeting = "Selamat malam, saatnya merawat kulit dan istirahat ✨";
+    }
+
+    greetingEl.innerText = greeting;
+
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark");
+      localStorage.setItem("kanolaDarkMode", document.body.classList.contains("dark") ? "true" : "false");
+    }
+
+    window.addEventListener("load", () => {
+      const savedMode = localStorage.getItem("kanolaDarkMode");
+      if (savedMode === "true") {
+        document.body.classList.add("dark");
+      }
+    });
+  </script>
+
+</body>
+</html>

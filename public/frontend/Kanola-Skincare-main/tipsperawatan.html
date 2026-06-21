@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tips Perawatan - Kanola Skincare</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: url('Skin care product natural cosmetic containing skin, care, and facial.jpeg') no-repeat center center/cover;
+      backdrop-filter: blur(4px);
+      padding: 40px 20px;
+      color: #333;
+    }
+
+    header {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+
+    header h1 {
+      color: #e75480;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .nav-buttons {
+      margin-top: 10px;
+    }
+
+    .nav-buttons a {
+      display: inline-block;
+      margin: 5px 10px;
+      padding: 8px 14px;
+      background: #e75480;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: background 0.3s;
+    }
+
+    .nav-buttons a:hover {
+      background: #d24670;
+    }
+
+    .tips-container {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+    }
+
+    .tip-card {
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      transition: all 0.6s ease;
+      transform: translateY(30px);
+      opacity: 0;
+    }
+
+    .tip-card.active {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .tip-card img {
+      width: 100%;
+      max-width: 120px;
+      height: auto;
+      object-fit: cover;
+      margin: 0 auto 14px;
+      display: block;
+      border-radius: 16px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+      border: 3px solid #f9dce3;
+      padding: 4px;
+      background-color: #fff;
+      transition: transform 0.3s ease;
+    }
+
+    .tip-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .tip-card h3 {
+      color: #e75480;
+      font-size: 1rem;
+      margin: 8px 0 6px;
+    }
+
+    .tip-card p {
+      font-size: 0.85rem;
+      color: #555;
+    }
+
+    .kuis-box {
+      margin-top: 60px;
+      background: rgba(255,255,255,0.95);
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .kuis-box h2 {
+      text-align: center;
+      color: #e75480;
+      margin-bottom: 20px;
+    }
+
+    .kuis-box label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+      color: #444;
+    }
+
+    .kuis-box button {
+      margin-top: 16px;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    .kuis-box .submit {
+      background: #e75480;
+      color: white;
+    }
+
+    .kuis-box .reset {
+      background: #f0c9d1;
+      color: #222;
+    }
+
+    #hasilTips {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #155724;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: #999;
+      margin-top: 60px;
+    }
+
+    @media (max-width: 600px) {
+      .tip-card img {
+        max-width: 100px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>💡 Tips Perawatan Kulit</h1>
+    <div class="nav-buttons">
+      <a href="keranjang.html">🛒Keranjang</a>
+      <a href="produk.html">💄 Produk</a>
+      <a href="edukasi.html">💧 Edukasi Lainnya</a>
+      <a href="dashboard.html">🔙 Kembali</a>
+    </div>
+  </header>
+
+  <div class="tips-container" id="tipsList"></div>
+
+  <div class="kuis-box">
+    <h2>🧪 Kuis Tips & Trick Kulit Sehat</h2>
+    <form id="kuisTips">
+      <label><input type="checkbox" name="quiz" value="air"> Saya minum air putih lebih dari 8 gelas sehari</label>
+      <label><input type="checkbox" name="quiz" value="sunscreen"> Saya tidak pernah lupa memakai sunscreen</label>
+      <label><input type="checkbox" name="quiz" value="tidur"> Saya tidur minimal 7 jam setiap malam</label>
+      <label><input type="checkbox" name="quiz" value="buah"> Saya rutin makan buah dan sayuran segar</label>
+      <label><input type="checkbox" name="quiz" value="masker"> Saya menggunakan masker wajah 2–3 kali seminggu</label>
+
+      <button type="button" class="submit" onclick="cekTips()">Lihat Hasil Tips</button>
+      <button type="button" class="reset" onclick="resetTips()">🔄 Ulangi</button>
+
+      <div id="hasilTips"></div>
+    </form>
+  </div>
+
+  <footer>© 2025 Kanola Skincare. All rights reserved.</footer>
+
+  <script>
+    const tips = [
+      { title: "Gunakan Sunscreen", img: "0f77acc7-a64c-439a-a73c-be14913c220c.jpeg", desc: "Sunscreen SPF minimal 30 wajib digunakan setiap pagi, bahkan di dalam ruangan." },
+      { title: "Cuci Muka 2x Sehari", img: "WhatsApp Image 2025-06-17 at 14.19.34_ce5cf8b1.jpg", desc: "Membersihkan wajah pagi & malam menghilangkan minyak, debu, dan kotoran penyebab jerawat." },
+      { title: "Hindari Sentuh Wajah", img: "18ec5c5f-8bc4-451b-91fb-d7db3c5b0964.jpeg", desc: "Kuman dari tangan bisa memperparah jerawat atau iritasi kulit." },
+      { title: "Pakai Skincare Sesuai Jenis Kulit", img: "beranda2-design.png", desc: "Kenali kulitmu agar tidak salah pilih produk, contohnya kulit sensitif harus hindari parfum." },
+      { title: "Pelembap Wajib!", img: "Alya Skin ™ on Instagram_ “Time to detoxify….jpeg", desc: "Semua jenis kulit, bahkan berminyak, tetap butuh pelembap untuk menjaga barrier kulit." },
+      { title: "Minum Air yang Cukup", img: "….jpeg", desc: "Kulit lembap berasal dari dalam. Minum minimal 2 liter air/hari bantu cegah dehidrasi kulit." },
+      { title: "Jangan Lupa Eksfoliasi", img: "beauty campaign for Kylie Skin _ Skincare products….jpeg", desc: "Lakukan eksfoliasi 1–2x seminggu untuk angkat sel kulit mati dan bantu regenerasi kulit." },
+      { title: "Double Cleansing Jika Pakai Makeup", img: "WhatsApp Image 2025-06-17 at 03.33.50_a879fc5f.jpg", desc: "Gunakan cleansing oil/micellar water sebelum facial wash untuk bersihkan makeup secara maksimal." },
+      { title: "Tidur yang Cukup", img: "315e0875-5549-48f5-a0e7-a6ba8ed481c2.jpeg", desc: "Regenerasi kulit terjadi saat tidur. Pastikan cukup istirahat agar kulit tetap sehat & segar." },
+      { title: "Pakai Masker Secara Rutin", img: "A chic arrangement of two pink skincare bottles….jpeg", desc: "Sheet mask, clay mask, atau sleeping mask bantu memberikan nutrisi tambahan." },
+      { title: "Perhatikan Masa Kedaluwarsa Produk", img: "Locally made and glow inducing!_The post Get your….jpeg", desc: "Produk kadaluarsa bisa menyebabkan iritasi. Selalu cek label sebelum pakai!" },
+      { title: "Konsumsi Buah & Sayur", img: "35bafb9c-e0f5-4751-9f57-05ac093571ad.jpeg", desc: "Antioksidan dari makanan sehat bantu menjaga kecerahan dan elastisitas kulit." },
+      { title: "Kurangi Gula dan Gorengan", img: "750b6c37-ad57-44e7-8827-801f4ba0f6aa.jpeg", desc: "Gula berlebih dan makanan berminyak bisa memperparah jerawat dan membuat kulit kusam." },
+      { title: "Rajin Ganti Sarung Bantal", img: "Occasion_Daily _nFeatures_Machine Washable….jpeg", desc: "Kuman & minyak di bantal bisa menyebabkan jerawat. Ganti minimal 1x/minggu." }
+    ];
+
+    function tampilTips() {
+      const container = document.getElementById('tipsList');
+      tips.forEach(tip => {
+        const div = document.createElement('div');
+        div.className = 'tip-card';
+        div.innerHTML = `<img src="${tip.img}" alt="${tip.title}" /><h3>${tip.title}</h3><p>${tip.desc}</p>`;
+        container.appendChild(div);
+      });
+    }
+
+    function animasiScroll() {
+      const cards = document.querySelectorAll('.tip-card');
+      cards.forEach(card => {
+        const top = card.getBoundingClientRect().top;
+        if (top < window.innerHeight - 50) {
+          card.classList.add('active');
+        }
+      });
+    }
+
+    function cekTips() {
+      const checked = document.querySelectorAll('#kuisTips input:checked').length;
+      const result = document.getElementById('hasilTips');
+      let pesan = "";
+      if (checked === 5) {
+        pesan = "✨ Wah, kamu benar-benar panutan dalam merawat kulit! Skincare goals!";
+      } else if (checked >= 3) {
+        pesan = "👍 Sudah bagus! Tinggal sedikit lagi menuju kulit sehat impian.";
+      } else if (checked >= 1) {
+        pesan = "💡 Yuk lebih konsisten agar hasilnya maksimal!";
+      } else {
+        pesan = "😬 Belum mulai? Sekarang waktu yang tepat untuk peduli sama kulitmu!";
+      }
+      result.textContent = pesan;
+    }
+
+    function resetTips() {
+      document.querySelectorAll('#kuisTips input').forEach(cb => cb.checked = false);
+      document.getElementById('hasilTips').textContent = '';
+    }
+
+    window.addEventListener("scroll", animasiScroll);
+    window.addEventListener("load", () => {
+      tampilTips();
+      animasiScroll();
+    });
+  </script>
+
+</body>
+</html>

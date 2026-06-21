@@ -1,0 +1,40 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+
+<h4>Edit Kinerja Divisi</h4>
+
+<form method="POST"
+      action="{{ route('backend.v1.analytics.performances.update', $item->id) }}">
+    @csrf
+    @method('PUT')
+
+    <div class="mb-3">
+        <label>Nama Divisi</label>
+        <input name="nama_divisi"
+               value="{{ $item->nama_divisi }}"
+               class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label>Periode</label>
+        <input name="periode"
+               value="{{ $item->periode }}"
+               class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label>Nilai Kinerja</label>
+        <input type="number" name="nilai_kinerja"
+               value="{{ $item->nilai_kinerja }}"
+               class="form-control">
+    </div>
+
+    <button class="btn btn-success">Update</button>
+    <a href="{{ route('backend.v1.analytics.performances.index') }}"
+       class="btn btn-secondary">Kembali</a>
+</form>
+
+</div>
+@endsection

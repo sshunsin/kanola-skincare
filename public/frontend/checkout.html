@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout - Kanola Skincare</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: url('deleting once i get my laptop.jpeg') no-repeat center center/cover;
+      color: #333;
+    }
+    .checkout-container {
+      max-width: 800px;
+      margin: 60px auto;
+      background: rgba(255,255,255,0.95);
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 1;
+    }
+    h2 {
+      text-align: center;
+      color: #e75480;
+      margin-bottom: 30px;
+    }
+    .section {
+      margin-bottom: 30px;
+    }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+    input[type="text"], select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 15px;
+    }
+    .payment-options label {
+      display: block;
+      margin: 10px 0;
+    }
+    .btn-final {
+      text-align: center;
+    }
+    .btn-final button {
+      padding: 12px 30px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      background: #e75480;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .btn-final button:hover {
+      background: #d9456b;
+    }
+
+    /* Popup */
+    .popup-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      animation: fadeIn 0.5s ease;
+    }
+    .popup-box {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      max-width: 400px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      animation: popupSlide 0.5s ease;
+    }
+    .popup-box h3 {
+      color: #e75480;
+      margin-bottom: 15px;
+    }
+    .popup-box p {
+      color: #555;
+      margin-bottom: 25px;
+    }
+    .popup-box button {
+      padding: 10px 24px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      background-color: #e75480;
+      color: white;
+      transition: 0.3s ease;
+    }
+    .popup-box button:hover {
+      background-color: #d9456b;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; } to { opacity: 1; }
+    }
+    @keyframes popupSlide {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="checkout-container">
+    <h2>Checkout Pembayaran</h2>
+
+    <div class="section">
+      <label>Alamat Pengiriman:</label>
+      <p id="alamatText">-</p>
+    </div>
+
+    <div class="section">
+      <label>Metode Pengiriman:</label>
+      <p id="pengirimanText">-</p>
+    </div>
+
+    <div class="section">
+      <label>Metode Pembayaran:</label>
+      <div class="payment-options">
+        <label><input type="radio" name="metode" value="Transfer Bank" checked /> Transfer Bank (BCA/Mandiri/BRI)</label>
+        <label><input type="radio" name="metode" value="E-wallet" /> E-wallet (OVO, GoPay, ShopeePay)</label>
+        <label><input type="radio" name="metode" value="COD" /> Bayar di Tempat (COD)</label>
+      </div>
+    </div>
+
+    <div class="btn-final">
+      <button onclick="selesaikanPembayaran()">Selesaikan Pembayaran</button>
+    </div>
+  </div>
+
+  <!-- Popup -->
+  <div class="popup-overlay" id="popup">
+    <div class="popup-box">
+      <h3>✅ Pembayaran Berhasil!</h3>
+      <p>Terima kasih telah berbelanja di Kanola Skincare 💖</p>
+      <button onclick="menujuInvoice()">Lihat Invoice</button>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("alamatText").textContent = localStorage.getItem("alamatUser") || "-";
+    document.getElementById("pengirimanText").textContent = localStorage.getItem("pengiriman") || "-";
+
+    function selesaikanPembayaran() {
+      const metode = document.querySelector('input[name="metode"]:checked').value;
+      localStorage.setItem("metodePembayaran", metode);
+      document.getElementById("popup").style.display = "flex";
+    }
+
+    function menujuInvoice() {
+      window.location.href = "invoice.html";
+    }
+  </script>
+
+</body>
+</html>

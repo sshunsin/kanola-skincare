@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Daftar - Kanola</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: url('Modern beauty products background.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(5px);
+    }
+    .form-container {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 24px 20px;
+      border-radius: 20px;
+      max-width: 380px;
+      width: 90%;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+      animation: fadeIn 0.7s ease;
+      position: relative;
+    }
+    h2 {
+      text-align: center;
+      color: #e75480;
+      margin-bottom: 20px;
+      font-size: 1.4rem;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 11px 14px;
+      margin-bottom: 14px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 0.95rem;
+      font-family: 'Poppins', sans-serif;
+    }
+    input, select {
+      background: #f9f9ff;
+    }
+    .password-wrapper {
+      position: relative;
+    }
+    .password-wrapper input {
+      padding-right: 44px;
+    }
+    .password-wrapper i {
+      position: absolute;
+      top: 50%;
+      right: 14px;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #999;
+    }
+    button {
+      background: #e75480;
+      color: white;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #cc3964;
+    }
+    .extra-links {
+      text-align: center;
+      font-size: 0.92rem;
+      margin-top: 12px;
+    }
+    .extra-links a {
+      color: #e75480;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .extra-links a:hover {
+      text-decoration: underline;
+    }
+    .popup {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translate(-50%, -100%);
+      background-color: #ffe0eb;
+      color: #e75480;
+      padding: 14px 18px;
+      border: 1px solid #e75480;
+      border-radius: 12px;
+      font-size: 0.92rem;
+      display: none;
+      animation: slideDown 0.4s ease forwards;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .popup.show {
+      display: block;
+    }
+    .popup .close-btn {
+      position: absolute;
+      top: 6px;
+      right: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideDown {
+      from { opacity: 0; transform: translate(-50%, -120%); }
+      to { opacity: 1; transform: translate(-50%, -100%); }
+    }
+
+    @media (max-width: 480px) {
+      .form-container {
+        padding: 22px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="form-container">
+  <div id="popup" class="popup">
+    <span id="popupText">Pesan popup</span>
+    <span class="close-btn" onclick="closePopup()">×</span>
+  </div>
+
+  <h2>Daftar Akun Kanola</h2>
+  <form id="signupForm">
+    <input type="text" id="nama" placeholder="Nama Lengkap" required />
+    <input type="email" id="email" placeholder="Email" required />
+    
+    <div class="password-wrapper">
+      <input type="password" id="password" placeholder="Kata Sandi" required />
+      <i class="fas fa-eye" id="togglePassword"></i>
+    </div>
+
+    <div class="password-wrapper">
+      <input type="password" id="confirm" placeholder="Konfirmasi Sandi" required />
+      <i class="fas fa-eye" id="toggleConfirm"></i>
+    </div>
+
+    <input type="tel" id="telepon" placeholder="Nomor Telepon" required />
+    <select id="gender" required>
+      <option value="">Pilih Jenis Kelamin</option>
+      <option value="Perempuan">Perempuan</option>
+      <option value="Laki-laki">Laki-laki</option>
+    </select>
+    <input type="number" id="umur" placeholder="Umur" min="10" max="100" required />
+    <input type="text" id="negara" placeholder="Negara" required />
+    <button type="submit">Daftar</button>
+  </form>
+  <div class="extra-links">
+    Sudah punya akun? <a href="login.html">Masuk sekarang</a>
+  </div>
+</div>
+
+<script>
+  const togglePassword = document.getElementById("togglePassword");
+  const toggleConfirm = document.getElementById("toggleConfirm");
+  const passwordInput = document.getElementById("password");
+  const confirmInput = document.getElementById("confirm");
+
+  togglePassword.addEventListener("click", () => {
+    const type = passwordInput.type === "password" ? "text" : "password";
+    passwordInput.type = type;
+    togglePassword.classList.toggle("fa-eye");
+    togglePassword.classList.toggle("fa-eye-slash");
+  });
+
+  toggleConfirm.addEventListener("click", () => {
+    const type = confirmInput.type === "password" ? "text" : "password";
+    confirmInput.type = type;
+    toggleConfirm.classList.toggle("fa-eye");
+    toggleConfirm.classList.toggle("fa-eye-slash");
+  });
+
+  const form = document.getElementById("signupForm");
+  const popup = document.getElementById("popup");
+  const popupText = document.getElementById("popupText");
+
+  function showPopup(message) {
+    popupText.textContent = message;
+    popup.classList.add("show");
+    setTimeout(() => popup.classList.remove("show"), 4000);
+  }
+
+  function closePopup() {
+    popup.classList.remove("show");
+  }
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const nama = document.getElementById("nama").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = passwordInput.value.trim();
+    const confirm = confirmInput.value.trim();
+    const telepon = document.getElementById("telepon").value.trim();
+    const gender = document.getElementById("gender").value;
+    const umur = document.getElementById("umur").value.trim();
+    const negara = document.getElementById("negara").value.trim();
+
+    const emailRegex = /^[^@]+@[^@]+\.[a-z]{2,}$/;
+    const phoneRegex = /^[0-9]{10,15}$/;
+
+    if (!emailRegex.test(email)) return showPopup("Format email tidak valid.");
+    if (!phoneRegex.test(telepon)) return showPopup("Nomor telepon harus 10-15 digit angka.");
+    if (password !== confirm) return showPopup("Kata sandi tidak cocok.");
+    if (umur < 10 || umur > 100) return showPopup("Umur harus antara 10 dan 100 tahun.");
+
+    let users = JSON.parse(localStorage.getItem("kanolaUsers")) || [];
+    const emailExist = users.find(u => u.email === email);
+    if (emailExist) return showPopup("Email sudah terdaftar.");
+
+    users.push({ nama, email, password, telepon, gender, umur, negara });
+    localStorage.setItem("kanolaUsers", JSON.stringify(users));
+
+    showPopup("✅ Pendaftaran berhasil! Mengarahkan ke login...");
+    setTimeout(() => window.location.href = "login.html", 3000);
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beranda - Kanola Skincare</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Inter&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', 'Inter', sans-serif;
+      background-color: #fff5f8;
+      color: #333;
+      scroll-behavior: smooth;
+    }
+    header {
+      background-color: #f65b88;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .highlight {
+      background-color: #ffc7d6;
+      padding: 10px;
+      text-align: center;
+      font-size: 1rem;
+    }
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+                  url('beranda-design.png') no-repeat center/cover;
+      padding: 6rem 2rem;
+      text-align: center;
+      animation: fadeIn 1.5s ease-in;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: 800;
+      color: #fff;
+    }
+    .hero p {
+      color: #fff;
+    }
+    .hero button {
+      background-color: #e94272;
+      color: white;
+      border: none;
+      padding: 0.7rem 2rem;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+    .hero button:hover {
+      background-color: #cc3964;
+    }
+    .section {
+      padding: 4rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      text-align: center;
+    }
+    .card {
+      background-color: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border-radius: 16px;
+      padding: 2rem;
+      width: 300px;
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+    }
+    .testimonial-slider {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 1rem;
+      padding: 2rem;
+    }
+    .testimonial {
+      background-color: #fff;
+      border-left: 6px solid #f65b88;
+      padding: 1rem;
+      border-radius: 12px;
+      scroll-snap-align: start;
+      min-width: 300px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    footer {
+      background-color: #f65b88;
+      color: white;
+      padding: 2rem;
+      text-align: right;
+    }
+    .funfact {
+      background-color: white;
+      padding: 2rem;
+      margin-top: 2rem;
+      border-radius: 20px;
+      max-width: 900px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .unique-section {
+      text-align: center;
+      padding: 4rem 2rem;
+      background-color: #ffe4ec;
+    }
+    .unique-section img {
+      max-width: 300px;
+      margin: 1rem auto;
+      display: block;
+    }
+    .unique-section h2 {
+      color: #c73460;
+      font-size: 2rem;
+    }
+    .carousel-container {
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: #fff0f5;
+      border-radius: 20px;
+      max-width: 1000px;
+      overflow: hidden;
+      position: relative;
+    }
+    .carousel-track {
+      display: flex;
+      gap: 1rem;
+      transition: transform 0.5s ease-in-out;
+    }
+    .product-card {
+      min-width: 200px;
+      background: white;
+      padding: 1rem;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .product-card img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      margin-bottom: 1rem;
+    }
+    .carousel-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+    }
+    .carousel-nav button {
+      background-color: #f65b88;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      padding: 0.5rem 1rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .carousel-nav button:hover {
+      background-color: #cc3964;
+    }
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .scroll-reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div><strong>Kanola Skincare</strong></div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="login.html">Login</a>
+      <a href="signup.html">SignUp</a>
+    </nav>
+  </header>
+  <div class="highlight">
+    ✨ Temukan perawatan kulit terbaik untukmu! | 💖 Kanola Skincare – Solusi untuk kulit sehat, cerah & percaya diri. | 🧴 Produk natural & aman! ✨
+  </div>
+  <section class="hero">
+    <h1>Selamat Datang di Kanola Skincare 💖</h1>
+    <p>Raih kulit sehat dan bercahaya dengan produk lokal berkualitas.</p>
+    <button id="btnLihatProduk">Lihat Produk</button>
+  </section>
+  <section id="produk-preview" class="carousel-container scroll-reveal" style="display: none;">
+    <h2 style="text-align:center; color:#c73460;">✨ Produk Unggulan Kami ✨</h2>
+    <div class="carousel-track">
+      <div class="product-card scroll-reveal"><img src="Cosmetic bottles.jpeg" alt="Serum Glow" /><h4>Serum Glow</h4><p>Serum vitamin C untuk kulit kusam & flek hitam.</p></div>
+      <div class="product-card scroll-reveal"><img src="WhatsApp Image 2025-06-17 at 00.42.10_c3cacfab.jpg" alt="Hydra Mist" /><h4>Hydra Mist</h4><p>Mist segar untuk hidrasi instan kulitmu.</p></div>
+      <div class="product-card scroll-reveal"><img src="0f77acc7-a64c-439a-a73c-be14913c220c.jpeg" alt="Tone Up Cream" /><h4>Tone Up Cream</h4><p>Mencerahkan wajah seketika dan merata.</p></div>
+      <div class="product-card scroll-reveal"><img src="WhatsApp Image 2025-06-17 at 00.43.51_d43dd4f4.jpg" alt="Aloe Moist Gel" /><h4>Aloe Moist Gel</h4><p>Gel aloe vera untuk kulit sensitif dan berjerawat.</p></div>
+      <div class="product-card scroll-reveal"><img src="WhatsApp Image 2025-06-17 at 00.45.10_f849df99.jpg" alt="Sunscreen Soft" /><h4>Sunscreen Soft</h4><p>Perlindungan SPF 50+ dengan tekstur ringan & lembut.</p></div>
+    </div>
+    <div class="carousel-nav">
+      <button onclick="geserProduk(-1)">‹</button>
+      <button onclick="geserProduk(1)">›</button>
+    </div>
+  </section>
+  <section class="section">
+    <div class="card scroll-reveal"><i class="fas fa-users fa-2x" style="color:#f65b88"></i><h3>Tentang Kami</h3><p>Kanola adalah solusi lokal untuk kulitmu. Kami berdedikasi memberikan edukasi dan produk berkualitas tinggi.</p></div>
+    <div class="card scroll-reveal"><i class="fas fa-lightbulb fa-2x" style="color:#f65b88"></i><h3>Manfaat Website</h3><p>Kamu bisa edukasi skincare, lihat review, order cepat, & konsultasi langsung secara online.</p></div>
+    <div class="card scroll-reveal"><i class="fas fa-heart fa-2x" style="color:#f65b88"></i><h3>Fun Facts</h3><ul style="list-style: none; padding: 0;"><li>🌸 Nama "Kanola" terinspirasi dari bunga Canola yang lembut dan sehat.</li><li>🌿 Bahan lokal yang ramah kulit & lingkungan.</li><li>❤️ 90% pengguna merasakan hasil positif dalam 2 minggu!</li></ul></div>
+  </section>
+  <section class="unique-section scroll-reveal">
+    <img src="beranda-design.png" alt="Unique Illustration">
+    <h2>Kenapa Harus Kanola?</h2>
+    <p>Kanola hadir untuk membantu kamu merawat kulit dengan cara yang tepat dan menyenangkan. Kami percaya bahwa perawatan kulit tidak harus rumit—cukup disesuaikan dengan kebutuhanmu. Selain itu, Kanola juga berkomitmen pada keberlanjutan dan mendukung kamu melalui komunitas yang positif. Bersama Kanola, merawat kulit jadi lebih nyaman, aman, dan bermakna.</p>
+  </section>
+  <section class="section">
+    <h2 style="width: 100%; text-align: center;">💬 Apa Kata Mereka?</h2>
+    <div class="testimonial-slider">
+      <div class="testimonial scroll-reveal"><p>"Website Kanola sangat mudah digunakan, checkout-nya cepat dan tampilannya elegan banget!"</p><strong>- Marin Kitagawa</strong></div>
+      <div class="testimonial scroll-reveal"><p>"Saya suka fitur edukasinya! Aku jadi tahu lebih banyak soal jenis kulit dan produk yang cocok."</p><strong>- Boa Hancock</strong></div>
+      <div class="testimonial scroll-reveal"><p>"Dari homepage-nya aja udah kelihatan profesional dan modern. Recommended!"</p><strong>- Mikasa Ackerman</strong></div>
+    </div>
+  </section>
+  <footer>
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem; padding: 2rem 1rem;">
+      <div style="flex: 1; min-width: 250px;">
+        <h3 style="margin-top: 0;">📍 Alamat</h3>
+        <p>Jl. Kayu Putih No. 45A, Medan</p>
+        <h3>📞 Hubungi Kami</h3>
+        <p><i class="fas fa-phone"></i> 0812-3456-7890</p>
+        <p><i class="fas fa-envelope"></i> support@kanolaskincare.com</p>
+      </div>
+  
+      <div style="flex: 1; min-width: 250px;">
+        <h3 style="margin-top: 0;">📲 Ikuti Kami</h3>
+        <p>
+          <i class="fab fa-instagram"></i> <a href="https://instagram.com/kanola.skin" target="_blank" style="color: white; text-decoration: none;">@kanola.skin</a><br>
+          <i class="fab fa-whatsapp"></i> <a href="https://wa.me/6281234567890" target="_blank" style="color: white; text-decoration: none;">WhatsApp Kami</a><br>
+          <i class="fab fa-facebook"></i> <a href="#" style="color: white; text-decoration: none;">Kanola Skincare</a>
+        </p>
+        <h3>💌 Newsletter</h3>
+        <p>Dapatkan tips & promo eksklusif!</p>
+        <input type="email" placeholder="Email kamu..." style="padding: 8px; border-radius: 8px; border: none; width: 80%; margin-bottom: 0.5rem;">
+        <br>
+        <button style="background-color: #e94272; color: white; border: none; padding: 0.5rem 1rem; border-radius: 8px;">Langganan</button>
+      </div>
+    </div>
+    <hr style="border: 1px solid #ff85aa; width: 90%; margin: 1rem auto;">
+    <p style="text-align: center; margin: 0;">© 2025 Kanola Skincare — All rights reserved.</p>
+  </footer>  
+  <script>
+    let posisiProduk = 0;
+    document.getElementById('btnLihatProduk').addEventListener('click', function () {
+      const preview = document.getElementById('produk-preview');
+      preview.style.display = 'block';
+      preview.scrollIntoView({ behavior: 'smooth' });
+    });
+    function geserProduk(arah) {
+      const track = document.querySelector('.carousel-track');
+      const item = document.querySelector('.product-card');
+      const jarak = item.offsetWidth + 16;
+      posisiProduk += arah * jarak;
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      if (posisiProduk < 0) posisiProduk = 0;
+      if (posisiProduk > maxScroll) posisiProduk = maxScroll;
+      track.style.transform = `translateX(-${posisiProduk}px)`;
+    }
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.scroll-reveal').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>

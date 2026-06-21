@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Login Kanola</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* BACKGROUND */
+body {
+  margin: 0;
+  height: 100vh;
+  background: url('{{ asset('frontend/pawel-czerwinski-QY5U8JD3-tk-unsplash.jpg') }}') no-repeat center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* BLUR */
+body::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(6px);
+  background: rgba(255, 182, 193, 0.3);
+}
+
+/* CONTAINER */
+.container {
+  position: relative;
+  z-index: 2;
+  width: 900px;
+  height: 500px;
+  background: rgba(255,255,255,0.95);
+  border-radius: 20px;
+  display: flex;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+/* LEFT */
+.left {
+  width: 45%;
+  background: linear-gradient(135deg, #fc95b4, #d190a9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+/* BUBBLE */
+.left::before,
+.left::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+}
+
+.left::before {
+  width: 180px;
+  height: 180px;
+  top: -60px;
+  left: -60px;
+}
+
+.left::after {
+  width: 120px;
+  height: 120px;
+  bottom: -40px;
+  right: -40px;
+}
+
+.logo img {
+  width: 140px;
+}
+
+.logo h1 {
+  margin-top: 10px;
+}
+
+/* RIGHT */
+.right {
+  width: 55%;
+  padding: 30px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ICON */
+.icon {
+  width: 60px;
+  height: 60px;
+  background: #e75480;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 10px;
+  color: white;
+}
+
+/* INPUT */
+.input-group {
+  position: relative;
+  margin-bottom: 18px;
+}
+
+.input-group input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 35px;
+}
+
+.input-group i {
+  position: absolute;
+  left: 5px;
+  top: 10px;
+  color: #999;
+}
+
+/* BUTTON LOGIN */
+.login-btn {
+  background: #e75480;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 20px;
+  width: 130px;
+  align-self: flex-end;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.login-btn:hover {
+  background: #f77bac;
+}
+
+/* FORGOT PASSWORD (tambahan, tidak ubah style utama) */
+.forgot-password {
+  text-align: right;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+.forgot-password a {
+  font-size: 12px;
+  color: #888;
+  text-decoration: none;
+}
+
+.forgot-password a:hover {
+  color: #e75480;
+  text-decoration: underline;
+}
+
+/* SIGN UP (tambahan) */
+.switch-auth {
+  margin-top: 12px;
+  font-size: 13px;
+  color: #666;
+  text-align: center;
+}
+
+.signup-link {
+  color: #e75480;
+  font-weight: 600;
+  text-decoration: none;
+  margin-left: 4px;
+}
+
+.signup-link:hover {
+  text-decoration: underline;
+}
+
+/* SOCIAL */
+.social {
+  margin-top: 20px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 10px;
+}
+
+.social-icons div {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.social-icons img {
+  width: 20px;
+}
+
+.social-icons div:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="left">
+    <div class="logo">
+      <img src="{{ asset('frontend/logoKBC.png') }}">
+      <h1>Kanola Skincare</h1>
+    </div>
+  </div>
+
+  <div class="right">
+
+    <div class="icon">
+      <i class="fas fa-user"></i>
+    </div>
+
+    <h2 style="text-align:center;">LOGIN</h2>
+
+    <div class="input-group">
+      <i class="fas fa-envelope"></i>
+      <input type="email" id="email" placeholder="Email">
+    </div>
+
+    <div class="input-group">
+      <i class="fas fa-lock"></i>
+      <input type="password" id="password" placeholder="Password">
+    </div>
+
+    <div class="forgot-password">
+      <a href="#">Forgot Password?</a>
+    </div>
+
+    <button class="login-btn">LOGIN</button>
+
+    <div class="switch-auth">
+      Don't have an account?
+      <a href="{{ route('frontend.v1.signup') }}" class="signup-link">Sign Up</a>
+    </div>
+
+    <div class="social">
+      Or Login With
+      <div class="social-icons">
+        <div onclick="googleLogin()">
+          <img src="https://cdn-icons-png.flaticon.com/512/281/281764.png">
+          Google
+        </div>
+
+        <div onclick="facebookLogin()">
+          <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png">
+          Facebook
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+function googleLogin() {
+  window.location.href = "{{ route('frontend.v1.auth.google') }}";
+}
+
+function facebookLogin() {
+  window.location.href = "{{ route('frontend.v1.auth.facebook') }}";
+}
+</script>
+
+</body>
+</html>

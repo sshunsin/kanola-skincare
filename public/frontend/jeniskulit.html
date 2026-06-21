@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jenis Kulit - Kanola Skincare</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: url('Skin care product natural cosmetic containing skin, care, and facial.jpeg') no-repeat center center/cover;
+      backdrop-filter: blur(3px);
+      color: #333;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 16px 24px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header h1 {
+      color: #e75480;
+      font-size: 2rem;
+      margin: 0;
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .nav-buttons a {
+      padding: 10px 16px;
+      background: #e75480;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: background 0.3s;
+    }
+
+    .nav-buttons a:hover {
+      background: #d14370;
+    }
+
+    main {
+      max-width: 960px;
+      margin: 30px auto;
+      padding: 20px;
+      background: rgba(255,255,255,0.95);
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      animation: fadeIn 1s ease;
+    }
+
+    h2 {
+      color: #d64571;
+      margin-top: 40px;
+    }
+
+    .skin-type {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 20px;
+      gap: 20px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+
+    .skin-type.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .skin-type img {
+      flex: 1 1 250px;
+      max-width: 280px;
+      border-radius: 16px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+      border: 4px solid #fff;
+    }
+
+    .skin-type .text {
+      flex: 2 1 400px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    .quiz {
+      margin-top: 40px;
+      background: #fff3f7;
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid #e9b6c1;
+      animation: slideIn 1s ease;
+    }
+
+    .quiz label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .quiz button {
+      margin-top: 10px;
+      padding: 10px 16px;
+      background: #e75480;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .quiz button:hover {
+      background: #c93d6b;
+    }
+
+    .result {
+      margin-top: 16px;
+      font-weight: 600;
+    }
+
+    footer {
+      text-align: center;
+      margin: 50px 0 20px;
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media(max-width: 768px) {
+      .skin-type {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Kenali Jenis Kulitmu 💧</h1>
+  <div class="nav-buttons">
+    <a href="keranjang.html">🛒Keranjang</a>
+    <a href="produk.html">💄 Produk</a>
+    <a href="edukasi.html">💧 Edukasi Lainnya</a>
+    <a href="dashboard.html">🔙 Kembali</a>
+  </div>
+</header>
+
+<main>
+  <p>Mengenali jenis kulit dengan tepat adalah langkah awal untuk menentukan perawatan yang sesuai. Berikut adalah jenis-jenis kulit dan cara merawatnya:</p>
+
+  <div class="skin-type" id="normal">
+    <img src="18ec5c5f-8bc4-451b-91fb-d7db3c5b0964.jpeg" alt="Kulit Normal">
+    <div class="text">
+      <h2>1. Kulit Normal</h2>
+      <p>Kulit seimbang, lembut, dan tidak terlalu berminyak atau kering. Pori-pori kecil, jarang bermasalah. Rutin skincare ringan sangat cocok.</p>
+    </div>
+  </div>
+
+  <div class="skin-type" id="kering">
+    <img src="6160777c-c42c-431d-8807-9ed5ba0f37f1.jpeg" alt="Kulit Kering">
+    <div class="text">
+      <h2>2. Kulit Kering</h2>
+      <p>Terasa kencang, bersisik, dan mudah teriritasi. Gunakan pelembap intensif, hindari sabun keras, dan pakai face oil atau serum hydrating.</p>
+    </div>
+  </div>
+
+  <div class="skin-type" id="berminyak">
+    <img src="42d6b627-b535-4f62-91e8-3d083efafb90.jpeg" alt="Kulit Berminyak">
+    <div class="text">
+      <h2>3. Kulit Berminyak</h2>
+      <p>Bersinar di wajah, pori besar, mudah berjerawat. Gunakan toner, serum niacinamide, dan pelembap gel-based non-comedogenic.</p>
+    </div>
+  </div>
+
+  <div class="skin-type" id="kombinasi">
+    <img src="99d135f6-5dc6-4761-b483-ed66f8a525b1.jpeg" alt="Kulit Kombinasi">
+    <div class="text">
+      <h2>4. Kulit Kombinasi</h2>
+      <p>Pipi terasa kering tapi dahi dan hidung berminyak. Gunakan perawatan zona-T dan pipi secara terpisah. Sheet mask bisa membantu seimbangkan.</p>
+    </div>
+  </div>
+
+  <div class="skin-type" id="sensitif">
+    <img src="Photo young asian woman long hair with n….jpeg" alt="Kulit Sensitif">
+    <div class="text">
+      <h2>5. Kulit Sensitif</h2>
+      <p>Mudah merah, terasa perih saat pakai produk. Gunakan produk dengan kandungan minimal dan tanpa parfum, serta patch test dulu sebelum pakai produk baru.</p>
+    </div>
+  </div>
+
+  <h2>🔍 Cara Mengenalinya</h2>
+  <ul>
+    <li>Cuci wajah dan diamkan 2 jam tanpa skincare.</li>
+    <li>Gunakan kertas minyak di T-zone untuk mendeteksi minyak.</li>
+    <li>Perhatikan apakah kulit terasa kering, berminyak, kombinasi, atau gatal.</li>
+    <li>Catat reaksi terhadap produk tertentu: sensitif?</li>
+  </ul>
+
+  <div class="quiz">
+    <h2>🧪 Kuis Singkat: Jenis Kulitmu?</h2>
+    <label><input type="radio" name="kulit" value="normal"> Kulitku terasa seimbang, tidak berminyak/kering</label>
+    <label><input type="radio" name="kulit" value="kering"> Kulitku terasa kencang/kering setelah cuci muka</label>
+    <label><input type="radio" name="kulit" value="berminyak"> Wajahku mudah mengkilap sepanjang hari</label>
+    <label><input type="radio" name="kulit" value="kombinasi"> Zona-T berminyak tapi pipi kering</label>
+    <label><input type="radio" name="kulit" value="sensitif"> Kulitku mudah kemerahan atau gatal</label>
+    <button onclick="cekKulit()">Lihat Hasil</button>
+    <div class="result" id="hasilKuis"></div>
+  </div>
+</main>
+
+<footer>© 2025 Kanola Skincare</footer>
+
+<script>
+  function cekKulit() {
+    const pilihan = document.querySelector('input[name="kulit"]:checked');
+    const hasil = document.getElementById("hasilKuis");
+
+    if (!pilihan) {
+      hasil.innerHTML = "❗ Silakan pilih salah satu opsi terlebih dahulu.";
+      hasil.style.color = "#c0392b";
+      return;
+    }
+
+    const dataHasil = {
+      normal: "Jenis kulitmu normal! Lanjutkan dengan skincare basic seperti gentle cleanser, toner, dan pelembap ringan.",
+      kering: "Kulitmu kering. Gunakan produk hydrating seperti hyaluronic acid, pelembap tebal, dan hindari sabun berbusa tinggi.",
+      berminyak: "Kulitmu berminyak. Pilih toner oil control, exfoliate 2x seminggu, dan hindari pelembap berat.",
+      kombinasi: "Kulitmu kombinasi. Gunakan produk berbeda untuk zona-T (oil control) dan pipi (hydrating).",
+      sensitif: "Kulitmu sensitif. Gunakan skincare minimalis dan hypoallergenic, hindari fragrance dan alkohol tinggi."
+    };
+
+    hasil.innerHTML = `✅ ${dataHasil[pilihan.value]}`;
+    hasil.style.color = "#155724";
+  }
+
+  // Scroll Animation for skin sections
+  const skinTypes = document.querySelectorAll(".skin-type");
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add("show");
+    });
+  }, { threshold: 0.1 });
+
+  skinTypes.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up - Kanola</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* BACKGROUND BLUR */
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url('{{ asset('frontend/pawel-czerwinski-QY5U8JD3-tk-unsplash.jpg') }}') no-repeat center;
+  background-size: cover;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(8px);
+  background: rgba(255,255,255,0.2);
+}
+
+/* CONTAINER */
+.container {
+  display: flex;
+  width: 900px;
+  height: 540px;
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  position: relative;
+  z-index: 2;
+}
+
+/* LEFT */
+.left {
+  width: 50%;
+  background: linear-gradient(135deg, #fc95b4, #d190a9);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* LOGO TANPA BULATAN */
+.logo {
+  width: 160px;
+  margin-bottom: 15px;
+  z-index: 2;
+}
+
+.left h1 {
+  font-size: 22px;
+  z-index: 2;
+}
+
+/* BUBBLE */
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  animation: float 6s ease-in-out infinite;
+}
+
+.bubble1 {
+  width: 200px;
+  height: 200px;
+  top: -50px;
+  left: -50px;
+}
+
+.bubble2 {
+  width: 130px;
+  height: 130px;
+  bottom: 30px;
+  right: -30px;
+  animation-delay: 2s;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0px); }
+}
+
+/* RIGHT */
+.right {
+  width: 50%;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+/* HEADER ICON */
+.header-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.header-icon i {
+  font-size: 26px;
+  color: #e75480;
+  background: #ffe0eb;
+  padding: 12px;
+  border-radius: 50%;
+}
+
+/* INPUT */
+.input-group {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.input-group input,
+.input-group select {
+  width: 100%;
+  padding: 10px 40px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.input-group i {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  color: #888;
+}
+
+.toggle-eye {
+  right: 12px;
+  left: auto;
+  cursor: pointer;
+}
+
+/* BUTTON */
+button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 25px;
+  background: #e75480;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #cc3964;
+}
+
+/* SOCIAL */
+.social {
+  margin-top: 15px;
+}
+
+.social p {
+  text-align: center;
+  font-size: 14px;
+}
+
+.social-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.social-buttons button {
+  background: white;
+  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #333;
+}
+
+/* FACEBOOK */
+.facebook {
+  color: #1877F2;
+}
+
+/* GOOGLE SVG */
+.google-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* LINKS */
+.links {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.links a {
+  color: #e75480;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* POPUP */
+.popup {
+  position: absolute;
+  top: 20px;
+  background: #ffe0eb;
+  color: #e75480;
+  padding: 10px 20px;
+  border-radius: 10px;
+  display: none;
+}
+
+.popup.show {
+  display: block;
+}
+
+/* RESPONSIVE */
+@media(max-width: 768px) {
+  .container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .left, .right {
+    width: 100%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="left">
+    <div class="bubble bubble1"></div>
+    <div class="bubble bubble2"></div>
+
+    <img src="{{ asset('frontend/logoKBC.png') }}" class="logo" alt="Logo Kanola">
+
+    <h1>Kanola Skincare</h1>
+  </div>
+
+  <div class="right">
+
+    <div id="popup" class="popup"></div>
+
+    <div class="header-icon">
+      <i class="fa-solid fa-user-plus"></i>
+    </div>
+
+    <form action="{{ route('frontend.v1.register.submit') }}" method="POST" id="signupForm">
+      @csrf
+      
+      <div class="input-group">
+          <i class="fa fa-user"></i>
+          <input type="text" name="nama" id="nama" placeholder="Nama Lengkap" required>
+      </div>
+
+      <div class="input-group">
+          <i class="fa fa-envelope"></i>
+          <input type="email" name="email" id="email" placeholder="Email" required>
+      </div>
+
+      <div class="input-group">
+          <i class="fa fa-lock"></i>
+          <input type="password" name="password" id="password" placeholder="Password" required>
+          <i class="fa fa-eye toggle-eye" id="togglePassword"></i>
+      </div>
+
+      <div class="input-group">
+          <i class="fa fa-lock"></i>
+          <input type="password" name="password_confirmation" id="confirm" placeholder="Konfirmasi Password" required>
+          <i class="fa fa-eye toggle-eye" id="toggleConfirm"></i>
+      </div>
+
+      <div class="input-group">
+          <i class="fa fa-phone"></i>
+          <input type="text" name="hp" id="telepon" placeholder="No HP" required>
+      </div>
+
+      <div class="input-group">
+          <i class="fa fa-venus-mars"></i>
+          <select name="gender" id="gender" required>
+              <option value="">Jenis Kelamin</option>
+              <option value="Perempuan">Perempuan</option>
+              <option value="Laki-laki">Laki-laki</option>
+          </select>
+      </div>
+
+      <div class="input-group">
+          <i class="fa fa-calendar"></i>
+          <input type="number" name="umur" id="umur" placeholder="Umur" required>
+      </div>
+
+      <div class="input-group">
+          <i class="fa fa-globe"></i>
+          <input type="text" name="negara" id="negara" placeholder="Negara" required>
+      </div>
+
+      <button type="submit">Sign Up</button>
+  </form>
+
+    <div class="social">
+      <p>Or Sign Up With</p>
+      <div class="social-buttons">
+
+        <button onclick="window.location.href='{{ url('/auth/google') }}'">
+          <svg class="google-icon" viewBox="0 0 48 48">
+            <path fill="#EA4335" d="M24 9.5c3.9 0 7.4 1.3 10.1 3.9l7.5-7.5C36.6 2.3 30.6 0 24 0 14.7 0 6.6 5.5 2.7 13.4l8.7 6.7C13.6 13.4 18.3 9.5 24 9.5z"/>
+            <path fill="#34A853" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.6H24v9h12.7c-.5 2.7-2 5-4.2 6.5l6.5 5.1c3.8-3.5 6-8.6 6-16z"/>
+            <path fill="#4A90E2" d="M11.4 28.1c-1-2.7-1-5.6 0-8.3l-8.7-6.7C.9 16.5 0 20.1 0 24s.9 7.5 2.7 10.9l8.7-6.8z"/>
+            <path fill="#FBBC05" d="M24 48c6.6 0 12.2-2.2 16.3-6l-6.5-5.1c-2 1.4-4.6 2.3-9.8 2.3-5.7 0-10.4-3.9-12.1-9.1l-8.7 6.8C6.6 42.5 14.7 48 24 48z"/>
+          </svg>
+          <span>Google</span>
+        </button>
+
+        <button onclick="window.location.href='{{ url('/auth/facebook') }}'">
+          <i class="fab fa-facebook facebook"></i>
+          <span>Facebook</span>
+        </button>
+
+      </div>
+    </div>
+
+    <div class="links">
+      Sudah punya akun? <a href="{{ route('frontend.v1.login') }}">Login</a>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+const password = document.getElementById("password");
+const confirm = document.getElementById("confirm");
+
+document.getElementById("togglePassword").onclick = () => {
+  password.type = password.type === "password" ? "text" : "password";
+};
+
+document.getElementById("toggleConfirm").onclick = () => {
+  confirm.type = confirm.type === "password" ? "text" : "password";
+};
+
+const popup = document.getElementById("popup");
+
+function showPopup(msg) {
+  popup.innerText = msg;
+  popup.classList.add("show");
+  setTimeout(() => popup.classList.remove("show"), 3000);
+}
+
+document.getElementById("signupForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  if(password.value !== confirm.value){
+    return showPopup("Password tidak cocok");
+  }
+
+  let users = JSON.parse(localStorage.getItem("kanolaUsers")) || [];
+  users.push({
+    nama: document.getElementById("nama").value,
+    email: document.getElementById("email").value,
+    password: password.value
+  });
+
+  localStorage.setItem("kanolaUsers", JSON.stringify(users));
+
+  showPopup("Berhasil daftar!");
+  setTimeout(()=> window.location.href="{{ route('frontend.v1.login') }}", 2000);
+});
+</script>
+
+</body>
+</html>

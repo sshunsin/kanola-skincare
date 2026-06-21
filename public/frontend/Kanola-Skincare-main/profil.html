@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profil - Kanola Skincare</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      background: url('magic water.jpeg') no-repeat center center/cover;
+      backdrop-filter: blur(5px);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 520px;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.96);
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      animation: fadeInContainer 0.8s ease;
+    }
+
+    h2 {
+      color: #e75480;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .foto-profil {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .foto-profil img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid #f0c9d1;
+      object-fit: cover;
+      background-color: #fff;
+      padding: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .foto-profil img:hover {
+      transform: scale(1.05);
+    }
+
+    .foto-profil input {
+      margin-top: 10px;
+      font-size: 0.9rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: #e75480;
+      font-weight: 500;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    input[type="text"], input[type="email"], input[type="tel"], input[type="date"], select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      animation: fadeInUp 1s ease;
+    }
+
+    button {
+      background-color: #e75480;
+      color: #fff;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      width: 100%;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      animation: fadeInUp 1.2s ease;
+    }
+
+    button:hover {
+      background-color: #cc406e;
+    }
+
+    .nav-back {
+      text-align: center;
+      margin-top: 20px;
+      animation: fadeInUp 1.3s ease;
+    }
+
+    .nav-back a {
+      color: #e75480;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .nav-back a:hover {
+      text-decoration: underline;
+    }
+
+    @keyframes fadeInContainer {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 20px;
+      }
+      .container {
+        padding: 20px;
+      }
+      .foto-profil img {
+        width: 100px;
+        height: 100px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Profil Biodata Kamu</h2>
+
+    <div class="foto-profil">
+      <!-- Icon default profil (SVG ilustrasi pengguna feminin) -->
+      <img src="https://cdn-icons-png.flaticon.com/512/2922/2922561.png" id="previewFoto" alt="Foto Profil" />
+      <input type="file" accept="image/*" onchange="previewGambar(event)" />
+    </div>
+
+    <form>
+      <label for="nama">Nama Lengkap</label>
+      <input id="nama" type="text" value="Adel Skincare" />
+
+      <label for="email">Email</label>
+      <input id="email" type="email" value="adel@example.com" />
+
+      <label for="telepon">No. Telepon</label>
+      <input id="telepon" type="tel" value="081234567890" />
+
+      <label for="alamat">Alamat</label>
+      <input id="alamat" type="text" value="Jl. Mawar No.1, Jakarta" />
+
+      <label for="lahir">Tanggal Lahir</label>
+      <input id="lahir" type="date" value="2001-05-14" />
+
+      <label for="gender">Jenis Kelamin</label>
+      <select id="gender">
+        <option selected>Perempuan</option>
+        <option>Laki-laki</option>
+        <option>Lainnya</option>
+      </select>
+
+      <button type="submit">Simpan Biodata</button>
+    </form>
+
+    <div class="nav-back">
+      <a href="dashboard.html">← Kembali ke Dashboard</a>
+    </div>
+  </div>
+
+  <script>
+    function previewGambar(event) {
+      const image = document.getElementById('previewFoto');
+      const file = event.target.files[0];
+      if (file) {
+        image.src = URL.createObjectURL(file);
+      }
+    }
+  </script>
+</body>
+</html>

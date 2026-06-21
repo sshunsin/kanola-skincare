@@ -132,3 +132,7 @@ php artisan storage:link
 **Styling: Custom CSS, Google Fonts (Playfair Display)**
 
 ---
+
+## License 📄
+
+Proyek ini dilisensikan di bawah Hak Cipta [MIT License](LICENSE). Anda bebas menggunakannya untuk keperluan personal maupun komersial.

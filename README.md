@@ -1,7 +1,7 @@
 # Kanola Skincare Monitoring System 🌸
 
 <p align="center">
-  <img src="public/logoKBC.png" width="500" alt="Kanola Skincare Logo">
+  <img src="public/logoKBC.png" width="250" alt="Kanola Skincare Logo">
 </p>
 
 Aplikasi monitoring sistem berbasis Laravel untuk mengelola proses produksi, evaluasi produk, dan pelacakan pesanan masuk (orders) produk Kanola Skincare secara real-time.

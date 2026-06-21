@@ -10,7 +10,9 @@ Aplikasi monitoring sistem berbasis Laravel untuk mengelola proses produksi, eva
 
 ## Features
 * **Dashboard Statistik & Analytics:** Memantau revenue total, total order, customer unik, serta grafik tren penjualan (Chart.js).
-* **Manajemen Produk:** Sinkronisasi data antara 14 produk inti aktif.
+* **Autentikasi Multi-Guard & OAuth Terintegrasi:** Memisahkan sesi masuk antara akun Admin/Staf (Backend) dan Customer (Frontend) dengan dukungan fitur login sosial Google via Laravel Socialite.
+* **Manajemen Profil Pelanggan & Unggah Foto:** Fitur bagi customer untuk melengkapi data diri (No. HP, Kode Pos, Jenis Kelamin, Umur, Negara, Alamat) beserta foto profil interaktif menggunakan live-preview JavaScript.
+* **Manajemen Produk:** Sinkronisasi data antara 14 produk inti aktif termasuk fitur unggah gambar komoditas secara dinamis.
 * **Monitoring Produksi & Progres:** Pelacakan persentase tahapan produksi massal.
 * **Evaluasi Mutu & Risiko:** Dokumentasi penilaian kualitas produk dari manager dan tim laboratorium.
 * **Manajemen Pesanan Terintegrasi:** Penyimpanan data checkout dengan detail list produk berbasis format JSON array terstruktur.
@@ -61,8 +63,21 @@ erDiagram
     }
     CUSTOMER {
         bigint id
+        bigint user_id
         string nama
         string email
+        string status
+        string role
+        string password
+        string hp
+        string alamat
+        string pos
+        string foto
+        string google_id
+        string google_token
+        string gender
+        int umur
+        string negara
     }
 ```
 ---
@@ -88,7 +103,7 @@ npm install && npm run dev
 cp .env.example .env
 php artisan key:generate
 ```
-(Update DB_DATABASE, DB_USERNAME, & DB_PASSWORD di file .env)
+(Jangan lupa sesuaikan nilai DB_DATABASE, DB_USERNAME, DB_PASSWORD serta konfigurasi Google Client ID & Secret untuk Socialite di file .env)
 
 4. **Migrasi Database:**
 ```bash
@@ -105,17 +120,18 @@ php artisan migrate:fresh --seed
 php artisan db:seed --class=DatabaseSeeder
 ```
 
-6. **Jalankan Aplikasi:**
-```bash
-php artisan serve
-```
-- Front-end: http://127.0.0.1:8000/front/v1/login
-- Back-end: http://127.0.0.1:8000/backend/v1/login
-
-7. **Connect ke storage (opsional)**
+6. **Membuat tautan Simbolis Storage (Wajib):**
+Fitur unggah foto profil pelanggan dan gambar produk membutuhkan tautan direktori publik agar dapat diakses oleh browser:
 ```bash
 php artisan storage:link
 ```
+
+7. **Jalankan Aplikasi:**
+```bash
+php artisan serve
+```
+* Front-end (Customer Auth): http://127.0.0.1:8000/front/v1/login
+* Back-end (Admin/Staff Auth): http://127.0.0.1:8000/backend/v1/login
 
 ---
 
@@ -129,7 +145,9 @@ php artisan storage:link
 
 **Frontend Charting: Chart.js Library via CDN**
 
-**Styling: Custom CSS, Google Fonts (Playfair Display)**
+**Styling: Tailwind CSS & Custom CSS**
+
+**Fonts & Icons: Google Fonts (Playfair Display) & FontAwesome Icons**
 
 ---
 
